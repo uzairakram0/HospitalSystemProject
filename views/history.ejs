@@ -1,0 +1,15 @@
+<%- include("partials/header"); -%>
+
+<h1> <%= patientname %> </h1>
+<h3><i>History</i></h3>
+
+<% contents.forEach(function(content){ %>
+  <h1> <%= content.title %> </h1>
+  <p> <%= content.body.substring(0, 100) + "..." %>
+    <a href="/history/<%= content.title %>">Read More</a></p>
+
+<% }); %>
+
+
+
+<%- include("partials/footer"); -%>

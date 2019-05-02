@@ -1,0 +1,74 @@
+<%- include("partials/header"); -%>
+
+<style type="text/css">
+	#display{
+		overflow: scroll;
+		height: 200px;
+		overflow-x: hidden;
+		outline: .5px lightgrey solid;
+		background-color: #e3ebf7;
+	}
+
+	#container{
+		background-color: lightblue;
+		outline: lightgrey solid .5px;
+		height: 300px;
+	}
+	button{
+		width: 45%;
+		background-color: lightgrey;
+		color: black;
+		margin-top: 10px;
+		outline: 1px solid black;
+	}
+	#boxes{
+		height: 60px;
+		text-align: center;
+		margin:5px;
+	}
+</style>
+
+<div class="container">
+
+		<div id="col-lg-12">
+		  <h1 class= "text-center"> <%= content %> </h1>
+		  <h1><%= user.profile.firstname %> <%= user.profile.lastname %></h1>
+		</div>
+	<div class="row justify-content-around">
+		<div class="col-lg-3" id="container">
+			<h3 class="text-center">User Info</h3>
+			<label>Date of birth</label>
+				<p> <%= user.profile.DoB %> </p>
+			<label>Gender</label>
+				<p> <%= user.profile.gender %> </p>
+			<label>Email</label>
+				<p> <%= user.profile.email %> </p>
+		</div>
+
+		<div class="col-lg-4 col-lg-offset-1 " id="container">
+			<h3 class="text-center">Make an Appointment</h3>
+		  		<form action="/appointments" method="post">
+		  			<label>Date</label>
+		  			<input style="background-color: white; outline: .5px solid lightgrey; width: 90%; border-radius: 5px; height: 30px;" type="Date" placeholder="MM/DD/YYYY" name="appDate" required=""></input>
+		  			<label>Time</label>
+		  			<input style="background-color: white; outline: .5px solid lightgrey; width: 90%; border-radius: 5px; height: 30px;" type="time" value="09:00" min="09:00" max="18:00" name="appTime" required=""></input>
+		  			<input type="hidden" name="userID" value="<%= user._id %>"></input>
+					<button class="btn" type="submit">Make Appointment</button>
+		  		</form>
+		</div>
+
+		<div class="col-lg-3 col-lg-offset-1 " id="container">
+			<h3 class="text-center">Upcoming Appointments</h3>
+				<ul class="users list-group" id="display">
+ 			 		<% if(appointments.length > 0) { %>
+ 			 			<% for(var i=0; i<appointments.length; i++) { %>
+    						<li>
+      							<div class="box" id="boxes"><h4 style="margin-bottom: 0px">Appointment on:</h4><%=appointments[i].time%><br/><%=appointments[i].date%></div>
+    						</li>
+    					<% } %>
+  					<% } %>
+				</ul>
+		</div>
+	</div>
+</div>
+<%- include("partials/footer"); -%>

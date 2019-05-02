@@ -1,0 +1,39 @@
+<%- include("partials/header"); -%>
+<style type="text/css">
+  .top-cloud{
+    position: absolute;
+    top:200px;
+    right: 130px;
+  }
+</style>
+  <h5> <%= content %> </h5>
+  <h1> <%= name %> </h1>
+
+<h4 align="center"><a  href="/histview">View Patient History</a></h4>
+<h3>Prescriptions</h3>
+  <div class="box">
+    <% for(var i=0; i < prescriptions.length; i++){ %>
+      <div class="item">
+        <input type="checkbox">
+      <p class="para"><%= prescriptions[i].value%></p>
+
+    </div>
+    <% } %>
+    <form class="item" action="/portal/empview" method="post">
+      <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+      <button type="submit" name="list">+</button>
+    </form>
+
+    <div class="top-cloud">
+      <label>Date of birth</label>
+      <p> <%= user.DoB %> </p>
+      <label>gender</label>
+      <p> <%= user.gender %> </p>
+      <label>Email</label>
+      <p> <%= user.email %> </p>
+    </div>
+
+</div>
+
+
+<%- include("partials/footer"); -%>

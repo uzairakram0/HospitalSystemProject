@@ -1,0 +1,18 @@
+<%- include("partials/header"); -%>
+
+<h1>Compose</h1>
+<form class="" action="/histview/compose" method="post">
+  <div class="form-group">
+
+    <label>Title</label>
+    <input class="form-control" type="text" name="postTitle" value=""><br>
+    <label>body</label>
+    <textarea class="form-control" rows="10" name="postBody"></textarea>
+
+  </div>
+
+  <button class="btn btn-primary" type="submit" cols="40" rows="5" name="button">Publish</button>
+
+</form>
+
+<%- include("partials/footer"); -%>

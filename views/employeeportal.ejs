@@ -1,0 +1,37 @@
+<%- include("partials/header"); -%>
+
+<style type="text/css">
+  .top-cloud{
+    position: absolute;
+    top:200px;
+    right: 130px;
+  }
+</style>
+<div id="container">
+  <h1> <%= name %> </h1>
+  <p> <%= content %> </p>
+
+<h3>Patients</h3>
+  <div>
+    <% for(var i=0; i < patients.length; i++){ %>
+      <div class="item">
+        <input type="checkbox">
+      <p class="para"> <a href="/portal/empview"><%= patients[i].patient %> </a></p>
+    </div>
+    <% } %>
+</div>
+
+</div>
+<div class="top-cloud">
+  <label>Date of birth</label>
+  <p> <%= user.DoB %> </p>
+  <label>gender</label>
+  <p> <%= user.gender %> </p>
+  <label>Email</label>
+  <p> <%= user.email %> </p>
+</div>
+
+</div>
+
+
+<%- include("partials/footer"); -%>

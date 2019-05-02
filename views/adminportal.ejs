@@ -1,0 +1,75 @@
+<%- include("partials/header"); -%>
+<style type="text/css">
+	input{
+		margin: auto;
+	}
+	button{
+		width: 100%;
+		background-color: lightblue;
+		color: black;
+		margin-top: 5px;
+	}
+	#display{
+		overflow: scroll;
+		height: 200px;
+		overflow-x: hidden;
+		outline: .5px solid slategrey;
+	}
+	#adminhead{
+		padding-bottom: 15px;
+		padding-top: 0px;
+		font-size: 30px;
+	}
+</style>
+<body>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="text-center" id="adminhead"> Admin Page</h3>
+        </div>
+      </div>
+      <div class="row top30">
+      	<div class="col-lg-8 col-lg-offset-2">
+        	<div class="col-lg-6">
+          		<h4 class="text-center"> Patients </h4>
+          		<form action="/promote" method="post">
+          		<ul class="users list-group" id="display">
+ 			 		<% for(var i=0; i<users.length; i++) { %>
+ 			 			<% if( users[i].profile.firstname != "admin"){ %>
+    						<li class="list-group-item">
+      							<input type="checkbox" name="patients" value="<%= users[i].profile._id %>"><%= users[i].profile.firstname + "  " + users[i].profile.lastname%></input>
+    						</li>
+    					<% } %>
+  					<% } %>
+				</ul>
+				<button class="btn" type="submit">Promote to employee</button>
+
+				</form>
+       	 </div>
+        	<div class="col-lg-6">
+        	 	<h4 class="text-center"> Employees </h4>
+        	 	<form action="/demote" method="post">
+         	 		<ul class="users list-group" id="display">
+ 				 		<% for(var i=0; i<employees.length; i++) { %>
+
+							<li class="list-group-item text-center">
+  								<span><input type="checkbox" name ="employees" value="<%= employees[i].profile._id %>"><%= employees[i].profile.firstname + "  " + employees[i].profile.lastname%></input></span>
+							</li>
+
+  						<% } %>
+  					</ul>
+  					<button class="btn" type="submit">Demote to patient</button>
+
+				</form>
+        	</div>
+      	</div>
+      </div>
+    </div>
+
+ </body>
+
+
+
+<%- include("partials/footer"); -%>
